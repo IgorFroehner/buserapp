@@ -1,0 +1,4 @@
+# BUSERAPP
+
+## Funcionalidades Críticas
+
