@@ -1,21 +1,14 @@
 package com.soft.buserapp.model.empresa;
 
+import com.soft.buserapp.model.Usuario;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
 @Entity
-public class Empresa {
+public class Empresa extends Usuario {
 
-    @Id
-    @GeneratedValue
-    private Long id;
+    @Column
+    private Long cnpj;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 }

@@ -1,6 +1,6 @@
 package com.soft.buserapp.controllers;
 
-import com.soft.buserapp.model.usuario.Usuario;
+import com.soft.buserapp.model.usuario.Cliente;
 import com.soft.buserapp.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +18,7 @@ public class UsuarioController {
 
     @GetMapping
     public String getNomeById(){
-        return service.findById(1L).map(Usuario::getNome).orElseGet(() -> "usuario não encontrado");
+        return service.findById(1L).map(Cliente::getNome).orElseGet(() -> "usuario não encontrado");
     }
 
 }

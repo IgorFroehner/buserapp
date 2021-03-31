@@ -1,7 +1,7 @@
 package com.soft.buserapp.service;
 
-import com.soft.buserapp.model.usuario.Usuario;
-import com.soft.buserapp.model.usuario.UsuarioRepository;
+import com.soft.buserapp.model.usuario.Cliente;
+import com.soft.buserapp.model.usuario.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,17 +12,17 @@ import java.util.Optional;
 public class UsuarioService {
 
     @Autowired
-    UsuarioRepository repository;
+    ClienteRepository repository;
 
-    public Optional<Usuario> findById(Long id){
+    public Optional<Cliente> findById(Long id){
         return this.repository.findById(id);
     }
 
-    public Usuario save(Usuario usuario) {
+    public Cliente save(Cliente usuario) {
         return this.repository.save(usuario);
     }
 
-    public List<Usuario> findAll(){
+    public List<Cliente> findAll(){
         return this.repository.findAll();
     }
 

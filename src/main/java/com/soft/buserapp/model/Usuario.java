@@ -1,7 +1,6 @@
-package com.soft.buserapp.model.usuario;
+package com.soft.buserapp.model;
 
 import javax.persistence.*;
-import java.util.Objects;
 
 @Entity
 public class Usuario {
@@ -14,9 +13,6 @@ public class Usuario {
     private String nome;
 
     @Column
-    private String cpf;
-
-    @Column
     private String email;
 
     @Column
@@ -25,20 +21,11 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(Long id, String nome, String cpf, String email, String senha) {
+    public Usuario(Long id, String nome, String email, String senha) {
         this.id = id;
         this.nome = nome;
-        this.cpf = cpf;
         this.email = email;
         this.senha = senha;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
     }
 
     public String getEmail() {
