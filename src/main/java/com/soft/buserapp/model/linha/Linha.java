@@ -40,4 +40,13 @@ public class Linha {
     // * enderecosParadas
     // * veiculos
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Linha)) return false;
+        Linha linha = (Linha) o;
+        return id.equals(linha.id);
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.soft.buserapp.model.endereco;
 
+import com.soft.buserapp.model.Usuario;
 import com.soft.buserapp.model.linha.Linha;
 
 import javax.persistence.*;
@@ -66,4 +67,13 @@ public class Endereco {
     public void setNumero(Integer numero) {
         this.numero = numero;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Endereco)) return false;
+        Endereco endereco = (Endereco) o;
+        return id.equals(endereco.id);
+    }
+
 }
