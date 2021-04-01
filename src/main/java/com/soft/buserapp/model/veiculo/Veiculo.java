@@ -15,10 +15,23 @@ public class Veiculo {
     private String modelo;
 
     @Column
-    private Long numeroChassi;
+    private String placa;
+
+    @Column
+    private int ano;
 
     @ManyToOne
     private Empresa empresa;
+
+    public Veiculo() {
+    }
+
+    public Veiculo(String modelo, String placa, int ano, Empresa empresa) {
+        this.modelo = modelo;
+        this.placa = placa;
+        this.ano = ano;
+        this.empresa = empresa;
+    }
 
     public Long getId() {
         return id;
@@ -36,12 +49,47 @@ public class Veiculo {
         this.modelo = modelo;
     }
 
-    public Long getNumeroChassi() {
-        return numeroChassi;
+    public String getPlaca() {
+        return placa;
     }
 
-    public void setNumeroChassi(Long numeroChassi) {
-        this.numeroChassi = numeroChassi;
+    public void setPlaca(String placa) {
+        this.placa = placa;
+    }
+
+    public int getAno() {
+        return ano;
+    }
+
+    public void setAno(int ano) {
+        this.ano = ano;
+    }
+
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
+
+    @Override
+    public String toString() {
+        return "Veiculo{" +
+                "id=" + id +
+                ", modelo='" + modelo + '\'' +
+                ", placa='" + placa + '\'' +
+                ", ano=" + ano +
+                ", empresa=" + empresa +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Veiculo)) return false;
+        Veiculo veiculo = (Veiculo) o;
+        return id.equals(veiculo.id);
     }
 }
 
