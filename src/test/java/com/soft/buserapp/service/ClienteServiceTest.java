@@ -16,15 +16,15 @@ class ClienteServiceTest {
 
     @Test
     public void deveSalvarCliente() {
-        Cliente igor = new Cliente("Igor", "igor@igor", "12312312312", "123");
+        Cliente igor = new Cliente("Igor", "igor@igor", "12312312312", 123L);
         Cliente usuarioRetornado = service.save(igor);
         assertEquals(igor, usuarioRetornado);
     }
 
     @Test
     void deveValidarCliente() {
-        Cliente joao = new Cliente("Joao", "joao@joao", "12312312312", "11111111111");
-        Cliente igor = new Cliente("Igor", "igor@igor", "12312312312", "123");
+        Cliente joao = new Cliente("Joao", "joao@joao", "12312312312", 11111111111L);
+        Cliente igor = new Cliente("Igor", "igor@igor", "12312312312", 123L);
         Assertions.assertThrows(IllegalArgumentException.class, () -> service.save(joao));
         Assertions.assertDoesNotThrow(() -> service.save(igor));
     }

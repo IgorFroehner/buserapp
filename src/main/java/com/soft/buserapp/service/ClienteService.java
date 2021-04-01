@@ -18,8 +18,8 @@ public class ClienteService {
         return this.repository.findById(id);
     }
 
-    public static boolean validaCpf(String cpf) {
-        return !cpf.equals("11111111111");
+    public static boolean validaCpf(Long cpf) {
+        return cpf != 11111111111L;
     }
 
     public Cliente save(Cliente usuario) {
