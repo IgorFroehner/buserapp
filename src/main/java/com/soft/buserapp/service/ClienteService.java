@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UsuarioService {
+public class ClienteService {
 
     @Autowired
     ClienteRepository repository;
@@ -18,7 +18,12 @@ public class UsuarioService {
         return this.repository.findById(id);
     }
 
+    public static boolean validaCpf(String cpf) {
+        return !cpf.equals("11111111111");
+    }
+
     public Cliente save(Cliente usuario) {
+        if (!validaCpf(usuario.getCpf())) throw new IllegalArgumentException("CPF Invalido");
         return this.repository.save(usuario);
     }
 
