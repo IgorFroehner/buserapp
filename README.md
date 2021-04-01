@@ -21,8 +21,8 @@ Pensei em cliente pra poder mudar o nome de usuario, já que a diferenca entre e
     * cpf
     * email
     * senha
-  
-Da pra pensar da empresa extender usuario mesmo, desse jeito só é estranho pq usuario 
+
+Da pra pensar da empresa extender usuario mesmo, desse jeito só é estranho pq usuario
 é uma entidade
 
 * Empresa:
@@ -31,22 +31,23 @@ Da pra pensar da empresa extender usuario mesmo, desse jeito só é estranho pq 
     * cnpj
     * email
     * senha
-    
+
 * Veiculo:
     * id
     * numeroChassi
     * empresa
     * dataUltimaRevisao
-    
+
 * Linha:
     * id
     * titulo
     * numeroParadas
+    * enderecosParadas
     * horarioInicio
     * horarioFim
     * empresa
     * preco
-    * motoristas ? n temos motoristas
+    * veiculos
 
 * Review:
     * usuario
