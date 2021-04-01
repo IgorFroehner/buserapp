@@ -7,20 +7,20 @@ import javax.persistence.*;
 public class Cliente extends Usuario {
 
     @Column
-    private String cpf;
+    private Long cpf;
 
     public Cliente() {
     }
 
-    public String getCpf() {
+    public Long getCpf() {
         return cpf;
     }
 
-    public void setCpf(String cpf) {
+    public void setCpf(Long cpf) {
         this.cpf = cpf;
     }
 
-    public Cliente(String nome, String email, String senha, String cpf) {
+    public Cliente(String nome, String email, String senha, Long cpf) {
         super(nome, email, senha);
         this.cpf = cpf;
     }
