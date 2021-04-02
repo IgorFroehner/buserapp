@@ -1,17 +1,12 @@
 package com.soft.buserapp.service;
 
 import com.soft.buserapp.model.empresa.Empresa;
-import com.soft.buserapp.model.endereco.Endereco;
-import com.soft.buserapp.model.linha.Linha;
 import com.soft.buserapp.model.review.Review;
 import com.soft.buserapp.model.usuario.Cliente;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.math.BigDecimal;
-import java.time.LocalTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -22,12 +17,13 @@ class ReviewServiceTest {
     @Autowired private EmpresaService empresaService;
     @Autowired private ClienteService clienteService;
 
+    Empresa empresa = new Empresa("IgorLtda", "igorltda@igor", "12312312312", 123L);
+    Cliente cliente = new Cliente("Igor", "igor@igor", "12312312312", 123L);
+
     private Review review;
 
     @BeforeEach
     void setUp() {
-        var empresa = new Empresa("IgorLtda", "igorltda@igor", "12312312312", 123L);
-        var cliente = new Cliente("Igor", "igor@igor", "12312312312", 123L);
         empresaService.save(empresa);
         clienteService.save(cliente);
         review = new Review(5, "Muito bom", empresa, cliente);
@@ -60,6 +56,20 @@ class ReviewServiceTest {
         var empresa = service.findById(review.getId());
         assertTrue(empresa.isPresent());
         assertEquals(5, review.getNota());
+    }
+
+    @Test
+    void deveBuscarReviewPorEmpresa() {
+        var reviews = service.findByEmpresa(empresa);
+        assertFalse(reviews.isEmpty());
+        assertTrue(reviews.contains(review));
+    }
+
+    @Test
+    void deveBuscarReviewPorCliente() {
+        var reviews = service.findByCliente(cliente);
+        assertFalse(reviews.isEmpty());
+        assertTrue(reviews.contains(review));
     }
 
 }
