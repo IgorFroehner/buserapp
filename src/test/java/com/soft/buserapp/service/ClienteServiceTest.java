@@ -1,18 +1,24 @@
 package com.soft.buserapp.service;
 
+import com.soft.buserapp.model.empresa.Empresa;
+import com.soft.buserapp.model.linha.Linha;
 import com.soft.buserapp.model.usuario.Cliente;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.math.BigDecimal;
+import java.time.LocalTime;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class ClienteServiceTest {
 
-    @Autowired
-    private ClienteService service;
+    @Autowired private ClienteService service;
+    @Autowired private EmpresaService empresaService;
+    @Autowired private LinhaService linhaService;
 
     private Cliente cliente;
 
@@ -58,4 +64,15 @@ class ClienteServiceTest {
         assertDoesNotThrow(() -> service.save(igor));
     }
 
+    @Test
+    void deveConsultarLinhas() {
+        var empresa = new Empresa("EmpresaTeste", "teste@teste.com", "123", 123L);
+        empresaService.save(empresa);
+        var linha = new Linha("Centro - Udesc", LocalTime.NOON, LocalTime.now(), empresa, new BigDecimal("5.00"));
+        linhaService.save(linha);
+        var linhas = linhaService.findAll();
+        var opt = linhas.stream().filter(l -> l.getId().equals(linha.getId())).findFirst();
+        assertTrue(opt.isPresent());
+        assertEquals(linha, opt.get());
+    }
 }
