@@ -32,6 +32,26 @@ public class Endereco {
         return id;
     }
 
+    public Endereco() {
+    }
+
+    public Endereco(Long id, BigDecimal latitude, BigDecimal longitude, String rua, Integer numero, Linha linha) {
+        this.id = id;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.rua = rua;
+        this.numero = numero;
+        this.linha = linha;
+    }
+
+    public Endereco(BigDecimal latitude, BigDecimal longitude, String rua, Integer numero, Linha linha) {
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.rua = rua;
+        this.numero = numero;
+        this.linha = linha;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
