@@ -55,4 +55,12 @@ public class LinhaServiceTest {
         assertTrue(retorno.isPresent());
         assertEquals(0, BigDecimal.ZERO.compareTo(retorno.get().getPreco()));
     }
+
+    @Test
+    void deveConsultarEnderecosDaLinha() {
+        var endereco = new Endereco(BigDecimal.ONE, BigDecimal.ONE, "Rua Estudante AAA", 123, linha);
+        enderecoService.save(endereco);
+        var enderecos = enderecoService.enderecosDaLinha(linha);
+        assertTrue(enderecos.contains(endereco));
+    }
 }
