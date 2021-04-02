@@ -17,35 +17,30 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class EnderecoServiceTest {
 
-    @Autowired
-    private EnderecoService service;
+    @Autowired private EnderecoService service;
+    @Autowired private EmpresaService empresaService;
+    @Autowired private LinhaService linhaService;
 
-    @Autowired
-    private EmpresaService empresaService;
-
-    @Autowired
-    private LinhaService linhaService;
-
-    Empresa empresa = new Empresa("IgorLtda", "igorltda@igor", "12312312312", 123L);
-    Linha linha = new Linha("Centro - Udesc", LocalTime.NOON, LocalTime.now(), empresa, new BigDecimal("5.00"));
+    private Endereco endereco;
 
     @BeforeEach
     void setUp() {
+        var empresa = new Empresa("IgorLtda", "igorltda@igor", "12312312312", 123L);
+        var linha = new Linha("Centro - Udesc", LocalTime.NOON, LocalTime.now(), empresa, new BigDecimal("5.00"));
         empresaService.save(empresa);
         linhaService.save(linha);
+        endereco = new Endereco(BigDecimal.ONE, BigDecimal.ONE, "Rua Estudante AAA", 123, linha);
+        service.save(endereco);
     }
 
     @Test
     void deveCadastrarEndereco() {
-        var endereco = new Endereco(BigDecimal.ONE, BigDecimal.ONE, "Rua Estudante AAA", 123, linha);
         var enderecoRetornado = service.save(endereco);
         assertEquals(endereco, enderecoRetornado);
     }
 
     @Test
     void deveBuscarEndereco() {
-        var endereco = new Endereco(BigDecimal.ONE, BigDecimal.ONE, "Rua Estudante AAA", 123, linha);
-        service.save(endereco);
         var cliente = service.findById(endereco.getId());
         assertTrue(cliente.isPresent());
         assertEquals(endereco, cliente.get());
@@ -53,16 +48,12 @@ class EnderecoServiceTest {
 
     @Test
     void deveBuscarEmpresas() {
-        var endereco = new Endereco(BigDecimal.ONE, BigDecimal.ONE, "Rua Estudante AAA", 123, linha);
-        service.save(endereco);
         assertNotNull(service.findAll());
         assertFalse(service.findAll().isEmpty());
     }
 
     @Test
     void deveAlterarEmpresa() {
-        var endereco = new Endereco(BigDecimal.ONE, BigDecimal.ONE, "Rua Estudante AAA", 123, linha);
-        service.save(endereco);
         endereco.setRua("Blumenau");
         service.save(endereco);
         var empresa = service.findById(endereco.getId());
