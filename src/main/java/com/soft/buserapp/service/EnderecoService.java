@@ -23,6 +23,8 @@ public class EnderecoService {
         return this.repository.save(endereco);
     }
 
+    public void delete(Endereco endereco) {this.repository.delete(endereco);}
+
     public List<Endereco> findAll(){
         return this.repository.findAll();
     }
