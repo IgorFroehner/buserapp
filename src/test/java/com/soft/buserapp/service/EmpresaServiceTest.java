@@ -58,22 +58,18 @@ public class EmpresaServiceTest {
     }
 
     @Test
-    void deveConsultarLinhas() {
+    void deveConsultarLinhasDaEmpresa() {
         var linha = new Linha("Centro - Udesc", LocalTime.NOON, LocalTime.now(), empresa, new BigDecimal("5.00"));
         linhaService.save(linha);
         var linhas = linhaService.linhasDaEmpresa(empresa);
-        var opt = linhas.stream().filter(l -> l.getId().equals(linha.getId())).findFirst();
-        assertTrue(opt.isPresent());
-        assertEquals(linha, opt.get());
+        assertTrue(linhas.contains(linha));
     }
 
     @Test
-    void deveConsultarVeiculo() {
+    void deveConsultarVeiculosDaEmpresa() {
         var veiculo = new Veiculo("Uno", "BAN-1001", 2006, empresa);
         veiculoService.save(veiculo);
         var veiculos = veiculoService.veiculosDaEmpresa(empresa);
-        var opt = veiculos.stream().filter(l -> l.getId().equals(veiculo.getId())).findFirst();
-        assertTrue(opt.isPresent());
-        assertEquals(veiculo, opt.get());
+        assertTrue(veiculos.contains(veiculo));
     }
 }

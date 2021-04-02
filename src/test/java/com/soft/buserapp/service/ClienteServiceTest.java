@@ -71,8 +71,6 @@ class ClienteServiceTest {
         var linha = new Linha("Centro - Udesc", LocalTime.NOON, LocalTime.now(), empresa, new BigDecimal("5.00"));
         linhaService.save(linha);
         var linhas = linhaService.findAll();
-        var opt = linhas.stream().filter(l -> l.getId().equals(linha.getId())).findFirst();
-        assertTrue(opt.isPresent());
-        assertEquals(linha, opt.get());
+        assertTrue(linhas.contains(linha));
     }
 }
