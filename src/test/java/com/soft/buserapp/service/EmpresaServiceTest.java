@@ -16,36 +16,36 @@ public class EmpresaServiceTest {
 
     @Test
     void deveCadastrarEmpresa() {
-        var igorLtda = new Empresa("IgorLtda", "igorltda@igor", "12312312312", 123L);
-        var usuarioRetornado = service.save(igorLtda);
-        assertEquals(igorLtda, usuarioRetornado);
+        var empresa = new Empresa("IgorLtda", "igorltda@igor", "12312312312", 123L);
+        var rotorno = service.save(empresa);
+        assertEquals(empresa, rotorno);
     }
 
     @Test
     void deveBuscarEmpresa() {
-        var igorLtda = new Empresa("IgorLtda", "igorltda@igor", "12312312312", 123L);
-        service.save(igorLtda);
-        var cliente = service.findById(igorLtda.getId());
-        assertTrue(cliente.isPresent());
-        assertEquals(igorLtda, cliente.get());
+        var empresa = new Empresa("IgorLtda", "igorltda@igor", "12312312312", 123L);
+        service.save(empresa);
+        var retorno = service.findById(empresa.getId());
+        assertTrue(retorno.isPresent());
+        assertEquals(empresa, retorno.get());
     }
 
     @Test
     void deveBuscarEmpresas() {
-        var igorLtda = new Empresa("IgorLtda", "igorltda@igor", "12312312312", 123L);
-        service.save(igorLtda);
+        var empresa = new Empresa("IgorLtda", "igorltda@igor", "12312312312", 123L);
+        service.save(empresa);
         assertNotNull(service.findAll());
         assertFalse(service.findAll().isEmpty());
     }
 
     @Test
     void deveAlterarEmpresa() {
-        var igorLtda = new Empresa("IgorLtda", "igorltda@igor", "12312312312", 123L);
-        service.save(igorLtda);
-        igorLtda.setEmail("granza@gmail.com");
-        service.save(igorLtda);
-        var empresa = service.findById(igorLtda.getId());
-        assertTrue(empresa.isPresent());
-        Assertions.assertEquals("granza@gmail.com", empresa.get().getEmail());
+        var empresa = new Empresa("IgorLtda", "igorltda@igor", "12312312312", 123L);
+        service.save(empresa);
+        empresa.setEmail("granza@gmail.com");
+        service.save(empresa);
+        var retorno = service.findById(empresa.getId());
+        assertTrue(retorno.isPresent());
+        Assertions.assertEquals("granza@gmail.com", retorno.get().getEmail());
     }
 }

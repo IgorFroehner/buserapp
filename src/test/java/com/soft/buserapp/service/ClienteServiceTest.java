@@ -15,37 +15,37 @@ class ClienteServiceTest {
 
     @Test
     public void deveSalvarCliente() {
-        Cliente igor = new Cliente("Igor", "igor@igor", "12312312312", 123L);
-        Cliente usuarioRetornado = service.save(igor);
-        assertEquals(igor, usuarioRetornado);
+        Cliente cliente = new Cliente("Igor", "igor@igor", "12312312312", 123L);
+        Cliente retorno = service.save(cliente);
+        assertEquals(cliente, retorno);
     }
 
     @Test
     void deveBuscarCliente() {
-        var igor = new Cliente("Igor", "igor@igor", "12312312312", 123L);
-        service.save(igor);
-        var cliente = service.findById(igor.getId());
-        assertTrue(cliente.isPresent());
-        assertEquals(igor, cliente.get());
+        var cliente = new Cliente("Igor", "igor@igor", "12312312312", 123L);
+        service.save(cliente);
+        var retorno = service.findById(cliente.getId());
+        assertTrue(retorno.isPresent());
+        assertEquals(cliente, retorno.get());
     }
 
     @Test
     void deveBuscarClientes() {
-        var igor = new Cliente("Igor", "igor@igor", "12312312312", 123L);
-        service.save(igor);
+        var cliente = new Cliente("Igor", "igor@igor", "12312312312", 123L);
+        service.save(cliente);
         assertNotNull(service.findAll());
         assertFalse(service.findAll().isEmpty());
     }
 
     @Test
     void deveAlterarCliente() {
-        var igor = new Cliente("Igor", "igor@igor", "12312312312", 123L);
-        service.save(igor);
-        igor.setCpf(999999999L);
-        service.save(igor);
-        var cliente = service.findById(igor.getId());
-        assertTrue(cliente.isPresent());
-        assertEquals(999999999L, cliente.get().getCpf());
+        var cliente = new Cliente("Igor", "igor@igor", "12312312312", 123L);
+        service.save(cliente);
+        cliente.setCpf(999999999L);
+        service.save(cliente);
+        var retorno = service.findById(cliente.getId());
+        assertTrue(retorno.isPresent());
+        assertEquals(999999999L, retorno.get().getCpf());
     }
 
     @Test
