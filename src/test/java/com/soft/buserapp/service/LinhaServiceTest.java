@@ -15,30 +15,27 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 public class LinhaServiceTest {
 
-    @Autowired
-    private LinhaService service;
+    @Autowired private LinhaService service;
+    @Autowired private EmpresaService empresaService;
 
-    @Autowired
-    private EmpresaService empresaService;
-
-    private final Empresa empresa = new Empresa("EmpresaTeste", "teste@teste.com", "123", 123L);;
+    private Linha linha;
 
     @BeforeEach
     void setUp() {
+        var empresa = new Empresa("EmpresaTeste", "teste@teste.com", "123", 123L);
         empresaService.save(empresa);
+        linha = new Linha("Centro - Udesc", LocalTime.NOON, LocalTime.now(), empresa, new BigDecimal("5.00"));
+        service.save(linha);
     }
 
     @Test
     public void deveSalvarLinha() {
-        var linha = new Linha("Centro - Udesc", LocalTime.NOON, LocalTime.now(), empresa, new BigDecimal("5.00"));
         var retorno = service.save(linha);
         assertEquals(linha, retorno);
     }
 
     @Test
     void deveBuscarLinha() {
-        var linha = new Linha("Centro - Udesc", LocalTime.NOON, LocalTime.now(), empresa, new BigDecimal("5.00"));
-        service.save(linha);
         var retorno = service.findById(linha.getId());
         assertTrue(retorno.isPresent());
         assertEquals(linha, retorno.get());
@@ -46,16 +43,12 @@ public class LinhaServiceTest {
 
     @Test
     void deveBuscarLinhas() {
-        var linha = new Linha("Centro - Udesc", LocalTime.NOON, LocalTime.now(), empresa, new BigDecimal("5.00"));
-        service.save(linha);
         assertNotNull(service.findAll());
         assertFalse(service.findAll().isEmpty());
     }
 
     @Test
     void deveAlterarLinha() {
-        var linha = new Linha("Centro - Udesc", LocalTime.NOON, LocalTime.now(), empresa, new BigDecimal("5.50"));
-        service.save(linha);
         linha.setPreco(BigDecimal.ZERO);
         service.save(linha);
         var retorno = service.findById(linha.getId());

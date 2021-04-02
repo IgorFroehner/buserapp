@@ -1,5 +1,7 @@
 package com.soft.buserapp.service;
 
+import com.soft.buserapp.model.empresa.Empresa;
+import com.soft.buserapp.model.linha.Linha;
 import com.soft.buserapp.model.veiculo.Veiculo;
 import com.soft.buserapp.model.veiculo.VeiculoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +26,18 @@ public class VeiculoService {
 
     public List<Veiculo> findAll(){
         return this.repository.findAll();
+    }
+
+    public void adicionaOnibusNaLinha(Veiculo veiculo, Linha linha) {
+        veiculo.setLinha(linha);
+        repository.save(veiculo);
+    }
+
+    public List<Veiculo> veiculosDaEmpresa(Empresa empresa) {
+        return this.repository.findAllByEmpresa(empresa);
+    }
+
+    public List<Veiculo> veiculosDaLinha(Linha linha) {
+        return this.repository.findAllByLinha(linha);
     }
 }

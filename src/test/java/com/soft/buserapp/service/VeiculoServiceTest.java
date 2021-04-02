@@ -12,30 +12,27 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 public class VeiculoServiceTest {
 
-    @Autowired
-    private VeiculoService service;
+    @Autowired private VeiculoService service;
+    @Autowired private EmpresaService empresaService;
 
-    @Autowired
-    private EmpresaService empresaService;
-
-    private final Empresa empresa = new Empresa("EmpresaTeste", "teste@teste.com", "123", 123L);;
+    private Veiculo veiculo;
 
     @BeforeEach
     void setUp() {
+        var empresa = new Empresa("EmpresaTeste", "teste@teste.com", "123", 123L);
         empresaService.save(empresa);
+        veiculo = new Veiculo("Uno", "BAN-1001", 2006, empresa);
+        service.save(veiculo);
     }
 
     @Test
     void deveCadastrarVeiculo() {
-        var veiculo = new Veiculo("Uno", "BAN-1001", 2006, empresa);
         var retorno = service.save(veiculo);
         assertEquals(veiculo, retorno);
     }
 
     @Test
     void deveBuscarVeiculo() {
-        var veiculo = new Veiculo("Uno", "BAN-1001", 2006, empresa);
-        service.save(veiculo);
         var retorno = service.findById(veiculo.getId());
         assertTrue(retorno.isPresent());
         assertEquals(veiculo, retorno.get());
@@ -43,16 +40,12 @@ public class VeiculoServiceTest {
 
     @Test
     void deveBuscarVeiculos() {
-        var veiculo = new Veiculo("Uno", "BAN-1001", 2006, empresa);
-        service.save(veiculo);
         assertNotNull(service.findAll());
         assertFalse(service.findAll().isEmpty());
     }
 
     @Test
     void deveAlterarVeiculos() {
-        var veiculo = new Veiculo("Uno", "BAN-1001", 2006, empresa);
-        service.save(veiculo);
         veiculo.setAno(2012);
         service.save(veiculo);
         var retorno = service.findById(veiculo.getId());
