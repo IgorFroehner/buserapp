@@ -1,11 +1,17 @@
 package com.soft.buserapp.service;
 
 import com.soft.buserapp.model.empresa.Empresa;
+import com.soft.buserapp.model.linha.Linha;
+import com.soft.buserapp.model.veiculo.Veiculo;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.math.BigDecimal;
+import java.time.LocalTime;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -50,5 +56,25 @@ public class EmpresaServiceTest {
         var retorno = service.findById(empresa.getId());
         assertTrue(retorno.isPresent());
         Assertions.assertEquals("granza@gmail.com", retorno.get().getEmail());
+    }
+
+    @Test
+    void deveConsultarLinhas() {
+        var linha = new Linha("Centro - Udesc", LocalTime.NOON, LocalTime.now(), empresa, new BigDecimal("5.00"));
+        linhaService.save(linha);
+        var linhas = linhaService.linhasDaEmpresa(empresa);
+        var opt = linhas.stream().filter(l -> l.getId().equals(linha.getId())).findFirst();
+        assertTrue(opt.isPresent());
+        assertEquals(linha, opt.get());
+    }
+
+    @Test
+    void deveConsultarVeiculo() {
+        var veiculo = new Veiculo("Uno", "BAN-1001", 2006, empresa);
+        veiculoService.save(veiculo);
+        var veiculos = veiculoService.veiculosDaEmpresa(empresa);
+        var opt = veiculos.stream().filter(l -> l.getId().equals(veiculo.getId())).findFirst();
+        assertTrue(opt.isPresent());
+        assertEquals(veiculo, opt.get());
     }
 }
