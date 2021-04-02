@@ -25,4 +25,6 @@ public class EmpresaService {
     public List<Empresa> findAll(){
         return this.repository.findAll();
     }
+
+
 }

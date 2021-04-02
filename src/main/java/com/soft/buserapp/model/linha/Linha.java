@@ -19,9 +19,6 @@ public class Linha {
     private String titulo;
 
     @Column
-    private Integer numeroParadas;
-
-    @Column
     private LocalTime horarioInicio;
 
     @Column
@@ -40,6 +37,16 @@ public class Linha {
     // * enderecosParadas
     // * veiculos
 
+    public Linha() {
+    }
+
+    public Linha(String titulo, LocalTime horarioInicio, LocalTime horarioFim, Empresa empresa, BigDecimal preco) {
+        this.titulo = titulo;
+        this.horarioInicio = horarioInicio;
+        this.horarioFim = horarioFim;
+        this.empresa = empresa;
+        this.preco = preco;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -49,4 +56,63 @@ public class Linha {
         return id.equals(linha.id);
     }
 
+    @Override
+    public String toString() {
+        return "Linha{" +
+                "id=" + id +
+                ", titulo='" + titulo + '\'' +
+                ", horarioInicio=" + horarioInicio +
+                ", horarioFim=" + horarioFim +
+                ", empresa=" + empresa +
+                ", preco=" + preco +
+                '}';
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public LocalTime getHorarioInicio() {
+        return horarioInicio;
+    }
+
+    public void setHorarioInicio(LocalTime horarioInicio) {
+        this.horarioInicio = horarioInicio;
+    }
+
+    public LocalTime getHorarioFim() {
+        return horarioFim;
+    }
+
+    public void setHorarioFim(LocalTime horarioFim) {
+        this.horarioFim = horarioFim;
+    }
+
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
+
+    public BigDecimal getPreco() {
+        return preco;
+    }
+
+    public void setPreco(BigDecimal preco) {
+        this.preco = preco;
+    }
 }
