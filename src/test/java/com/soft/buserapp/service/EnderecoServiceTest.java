@@ -40,6 +40,12 @@ class EnderecoServiceTest {
     }
 
     @Test
+    void deveRemoverEndereco() {
+        service.delete(endereco);
+        assertTrue(service.findById(endereco.getId()).isEmpty());
+    }
+
+    @Test
     void deveBuscarEndereco() {
         var cliente = service.findById(endereco.getId());
         assertTrue(cliente.isPresent());
