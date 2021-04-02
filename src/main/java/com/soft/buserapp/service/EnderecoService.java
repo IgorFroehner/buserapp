@@ -1,6 +1,7 @@
 package com.soft.buserapp.service;
 
 import com.soft.buserapp.model.endereco.Endereco;
+import com.soft.buserapp.model.endereco.EnderecoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +12,7 @@ import java.util.Optional;
 public class EnderecoService {
 
     @Autowired
-    EnderecoService repository;
+    EnderecoRepository repository;
 
     public Optional<Endereco> findById(Long id){
         return this.repository.findById(id);
