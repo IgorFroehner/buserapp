@@ -24,6 +24,8 @@ public class VeiculoService {
         return this.repository.save(veiculo);
     }
 
+    public void delete(Veiculo veiculo) {this.repository.delete(veiculo);}
+
     public List<Veiculo> findAll(){
         return this.repository.findAll();
     }

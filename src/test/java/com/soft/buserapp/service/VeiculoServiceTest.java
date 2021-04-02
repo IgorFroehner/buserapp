@@ -37,6 +37,12 @@ public class VeiculoServiceTest {
     }
 
     @Test
+    void deveRemoverVeiculo() {
+        service.delete(veiculo);
+        assertTrue(service.findById(veiculo.getId()).isEmpty());
+    }
+
+    @Test
     void deveBuscarVeiculo() {
         var retorno = service.findById(veiculo.getId());
         assertTrue(retorno.isPresent());
