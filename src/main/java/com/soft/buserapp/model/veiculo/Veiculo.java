@@ -1,6 +1,7 @@
 package com.soft.buserapp.model.veiculo;
 
 import com.soft.buserapp.model.empresa.Empresa;
+import com.soft.buserapp.model.linha.Linha;
 
 import javax.persistence.*;
 
@@ -22,6 +23,9 @@ public class Veiculo {
 
     @ManyToOne
     private Empresa empresa;
+
+    @ManyToOne
+    private Linha linha;
 
     public Veiculo() {
     }
@@ -71,6 +75,14 @@ public class Veiculo {
 
     public void setEmpresa(Empresa empresa) {
         this.empresa = empresa;
+    }
+
+    public Linha getLinha() {
+        return linha;
+    }
+
+    public void setLinha(Linha linha) {
+        this.linha = linha;
     }
 
     @Override
