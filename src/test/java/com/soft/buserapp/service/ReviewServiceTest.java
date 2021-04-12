@@ -24,6 +24,8 @@ class ReviewServiceTest {
 
     @BeforeEach
     void setUp() {
+        empresa = new Empresa("IgorLtda", "igorltda@igor", "12312312312", 123L);
+        cliente = new Cliente("Igor", "igor@igor", "12312312312", 123L);
         empresaService.save(empresa);
         clienteService.save(cliente);
         review = new Review(5, "Muito bom", empresa, cliente);
@@ -31,16 +33,16 @@ class ReviewServiceTest {
     }
 
     @Test
-    void deveCadastrarEndereco() {
-        var enderecoRetornado = service.save(review);
-        assertEquals(review, enderecoRetornado);
+    void deveCadastrarReview() {
+        var reviewRetornado = service.save(review);
+        assertEquals(review, reviewRetornado);
     }
 
     @Test
-    void deveBuscarEndereco() {
-        var cliente = service.findById(review.getId());
-        assertTrue(cliente.isPresent());
-        assertEquals(review, cliente.get());
+    void deveBuscarReview() {
+        var retornado = service.findById(review.getId());
+        assertTrue(retornado.isPresent());
+        assertEquals(review, retornado.get());
     }
 
     @Test
@@ -53,9 +55,9 @@ class ReviewServiceTest {
     void deveAlterarEmpresa() {
         review.setNota(5);
         service.save(review);
-        var empresa = service.findById(review.getId());
-        assertTrue(empresa.isPresent());
-        assertEquals(5, review.getNota());
+        var reviewRetornado = service.findById(review.getId());
+        assertTrue(reviewRetornado.isPresent());
+        assertEquals(5, reviewRetornado.get().getNota());
     }
 
     @Test

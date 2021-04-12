@@ -1,5 +1,39 @@
 # Buser APP
 
+## Como rodar
+
+Todos esses passos podem ser executados diretamente da IDE que esta sendo utilizada. A IDE utilizada para 
+desenvolvimento foi IntelliJ da JetBrains.
+
+### Requisitos
+
+Esse projeto foi desenvolvido com o auxilio do framework springboot, e para inserção dos requisitos foi usado
+meaven, então para roda-lo é necessário ter instalado meaven. Ele também foi desenvolvido em máquinas UBUNTU
+20.04. A instalação do meaven no UBUNTU pode ser feita como segue:
+
+```bash
+sudo apt install meaven
+```
+
+E no windows: https://www.educba.com/install-maven/
+
+### Testes
+
+Roda todos os testes:
+```bash
+mvn test
+```
+
+Os testes também podem ser rodados diretamente da IDE.
+
+### Development Derver
+
+```bash
+mvn spring-boot:run
+```
+
+Então o projeto estará rodando em localhost:8080
+
 ## Regras de Negócio\Funcionalidades Criticas
 * Usuários devem poder se cadastrar no aplicativo.
 * Empresas devem poder se cadastrar no aplicativo.
