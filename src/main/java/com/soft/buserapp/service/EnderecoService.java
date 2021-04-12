@@ -2,6 +2,7 @@ package com.soft.buserapp.service;
 
 import com.soft.buserapp.model.endereco.Endereco;
 import com.soft.buserapp.model.endereco.EnderecoRepository;
+import com.soft.buserapp.model.linha.Linha;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +23,13 @@ public class EnderecoService {
         return this.repository.save(endereco);
     }
 
+    public void delete(Endereco endereco) {this.repository.delete(endereco);}
+
     public List<Endereco> findAll(){
         return this.repository.findAll();
+    }
+
+    public List<Endereco> enderecosDaLinha(Linha linha) {
+        return this.repository.findAllByLinha(linha);
     }
 }

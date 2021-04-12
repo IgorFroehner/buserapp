@@ -1,7 +1,8 @@
 package com.soft.buserapp.model.endereco;
 
-import com.soft.buserapp.model.Usuario;
 import com.soft.buserapp.model.linha.Linha;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -26,6 +27,7 @@ public class Endereco {
     private Integer numero;
 
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Linha linha;
 
     public Long getId() {
@@ -86,6 +88,14 @@ public class Endereco {
 
     public void setNumero(Integer numero) {
         this.numero = numero;
+    }
+
+    public Linha getLinha() {
+        return linha;
+    }
+
+    public void setLinha(Linha linha) {
+        this.linha = linha;
     }
 
     @Override

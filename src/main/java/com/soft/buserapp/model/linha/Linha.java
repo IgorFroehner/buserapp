@@ -30,13 +30,6 @@ public class Linha {
     @Column
     private BigDecimal preco;
 
-    @OneToMany
-    @JoinColumn(name = "id")
-    private List<Endereco> enderecosParadas;
-
-    // * enderecosParadas
-    // * veiculos
-
     public Linha() {
     }
 

@@ -24,11 +24,13 @@ public class VeiculoService {
         return this.repository.save(veiculo);
     }
 
+    public void delete(Veiculo veiculo) {this.repository.delete(veiculo);}
+
     public List<Veiculo> findAll(){
         return this.repository.findAll();
     }
 
-    public void adicionaOnibusNaLinha(Veiculo veiculo, Linha linha) {
+    public void adicionaVeiculoNaLinha(Veiculo veiculo, Linha linha) {
         veiculo.setLinha(linha);
         repository.save(veiculo);
     }
